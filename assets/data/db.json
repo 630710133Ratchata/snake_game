@@ -1,0 +1,39 @@
+{
+  "reviews": [
+    {
+      "id": 1,
+      "userName": "Earth",
+      "rating": 5
+    },
+    {
+      "id":2,
+      "userName": "Mos",
+      "rating": 3.5
+    },
+    {
+      "id":3,
+      "userName": "Ter",
+      "rating": 1
+    },
+    {
+      "id":4,
+      "userName": "Jim",
+      "rating": 2
+    },
+    {
+      "id": 5,
+      "userName": "ChinChin",
+      "rating": 5
+    },
+    {
+      "id":6,
+      "userName": "Pond",
+      "rating": 4.5
+    },
+    {
+      "id":3,
+      "userName": "Teen",
+      "rating": 2.5
+    }
+  ]
+}

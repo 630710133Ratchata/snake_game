@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:snake_game/screen/home_page.dart';
+import 'package:snake_game/screen/rating_page.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -28,47 +29,94 @@ class _MenuPageState extends State<MenuPage> {
             ),
           ),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Container(
-                    height: 50,
-                    width: 150,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.white10,
-                            spreadRadius: 3,
-                          )
-                        ]),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomePage(),
-                            ));
-                      },
-                      child: Center(
-                        child: Text(
-                          'Start Game!',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.black),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 32),
+                      child: Container(
+                        height: 50,
+                        width: 150,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.white10,
+                                spreadRadius: 3,
+                              )
+                            ]),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ));
+                          },
+                          child: Center(
+                            child: Text(
+                              'Start Game!',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                )
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24),
+                      child: Container(
+                        height: 50,
+                        width: 150,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.white10,
+                                spreadRadius: 3,
+                              )
+                            ]),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ReviewPage(),
+                                ));
+                          },
+                          child: Center(
+                            child: Text(
+                              'Reviews',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ],
-            ),
+            )
+
+
           ),
+
         ],
       ),
     );

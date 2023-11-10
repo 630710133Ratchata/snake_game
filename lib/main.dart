@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:snake_game/screen/home_page.dart';
 import 'package:snake_game/screen/menu_page.dart';
+import 'package:snake_game/screen/rating_page.dart';
 
 void main() {
   runApp(const MyApp());

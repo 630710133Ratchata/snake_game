@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import 'package:snake_game/screen/black_pixel.dart';
 import 'package:snake_game/screen/food_pixel.dart';
 import 'package:snake_game/screen/snake_pixel.dart';
@@ -36,18 +37,20 @@ class _HomePageState extends State<HomePage> {
   //ตำแหน่งอาหาร
   int foodPos = 55;
 
-  bool isButtonVisible = true;
+  bool ResetButtonVisible = true;
+  bool PlayButtonVisible = true;
 
   //start the game!
   void startGame() {
-    isButtonVisible = false;
-    Timer.periodic(Duration(milliseconds: 200), (timer) {
+    PlayButtonVisible = false;
+    Timer.periodic(Duration(milliseconds: 300), (timer) {
       setState(() {
         // keep the snake moving
         moveSnake();
 
         // เช็คว่าแพ้ไหม
         if (gameOver()) {
+          ResetButtonVisible = false;
           timer.cancel();
           //หน้าจอแสดงเมื่อแพ้
           showDialog(
@@ -61,7 +64,6 @@ class _HomePageState extends State<HomePage> {
         }
       });
     });
-
   }
 
   void eatFood() {
@@ -131,36 +133,44 @@ class _HomePageState extends State<HomePage> {
     }
     return false;
   }
+
   void resetGame() {
-
-      currentScore = 0;
-      snakePos = [0, 1, 2];
-      currentDirection = snake_Direction.RIGHT;
-      foodPos = Random().nextInt(totalNumberofSquares);
-      isButtonVisible = true;
-
+    startGame();
+    currentScore = 0;
+    snakePos = [0, 1, 2];
+    currentDirection = snake_Direction.RIGHT;
+    foodPos = Random().nextInt(totalNumberofSquares);
+    ResetButtonVisible = true;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
         children: [
-          //คะแนน
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                //user current score
-                Text('คะแนน',
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-                Text(currentScore.toString(),
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-              ],
-            ),
-          ),
+              BackButton(),
+              //คะแนน
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //user current score
+                  Text('คะแนน',
+                      style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                  Text(currentScore.toString(),
+                      style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                ],
+              ),
+              SizedBox(width: 50),
+            ],
+          ),),
+
 
           //ช่อง
           Expanded(
@@ -202,7 +212,7 @@ class _HomePageState extends State<HomePage> {
           ),
           //ปุ่มเล่น
           Visibility(
-              visible: isButtonVisible,
+              visible: PlayButtonVisible,
               child: Expanded(
                   child: Container(
                       child: Center(
@@ -216,20 +226,19 @@ class _HomePageState extends State<HomePage> {
                 onPressed: startGame,
               ))))),
           Visibility(
-              visible: isButtonVisible==false,
+              visible: ResetButtonVisible == false,
               child: Expanded(
                   child: Container(
                       child: Center(
                           child: MaterialButton(
-                            child: Text(
-                              'RESET',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, color: Colors.black),
-                            ),
-                            color: Colors.white,
-                            onPressed: resetGame,
-                          )))))
-
+                child: Text(
+                  'RESET',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                color: Colors.white,
+                onPressed: resetGame,
+              )))))
         ],
       ),
     );
